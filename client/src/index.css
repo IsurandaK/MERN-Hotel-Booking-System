@@ -60,3 +60,7 @@ h2 {
   padding: 5px;
   text-align: center !important;
 }
+
+.dropdown-toggle {
+  background-color: black !important;
+}

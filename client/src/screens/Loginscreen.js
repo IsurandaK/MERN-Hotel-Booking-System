@@ -52,7 +52,6 @@ function Loginscreen() {
                         value={password} onChange={(e)=>{setpassword(e.target.value)}}
                         />
                         
-
                         <button className="btn btn-primary mt-3" onClick={Login}>Login</button>
 
                     </div>
