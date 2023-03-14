@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Arbutus+Slab&display=swap');
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: 'Arbutus Slab', serif !important;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.navbar-nav {
+  margin-left: auto !important; 
+}
+
+.smallimg {
+  height: 200px;
+  width: 100% !important;
+  border-radius: 5px !important;
+  margin-top: 10px !important;
+}
+
+h1 {
+  font-size: 20px !important;
+}
+
+.btn {
+  background-color: #C1B339 !important;
+  color: white !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.bs {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-top: 20px !important;
+  border-radius: 5px !important;
+  padding: 20px !important;
+}
+
+.bigimg {
+  height: 400px;
+  border-radius: 5px !important;
+}
+
+input {
+  box-shadow: none !important;
+  margin-top: 10px;
+  border:solid gray !important;
+}
+
+h2 {
+  font-size: 25px !important;
+  padding: 5px;
+  text-align: center !important;
+}
