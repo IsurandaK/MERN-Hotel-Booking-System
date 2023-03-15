@@ -3,13 +3,13 @@ const router = express.Router();
 const Booking = require("../models/booking")
 
 router.post("/bookhotel", async(req, res) => {
-
-    const {hotel,
+console.log(req.body);
+    const { hotel,
         userid,
         fromdate,
         todate,
         totalamount,
-        totaldays} = req.body
+        totaldays } = req.body
 
 
         try {
@@ -27,6 +27,7 @@ router.post("/bookhotel", async(req, res) => {
             const booking = await newbooking.save()
             res.send('Room Booked Successfully')
         } catch (error) {
+            console.log(error);
             return res.status(400).json({ error });
         }
 
