@@ -4,7 +4,7 @@ const Booking = require("../models/booking")
 const Hotel = require("../models/hotel")
 const moment = require("moment");
 const { v4: uuidv4 } = require('uuid');
-const stripe = require('stripe')('sk_test_51MlxH5SABQ8fb5lzBUZd1JJnYu6BCBhjbgm9BZjrOGiw2sFfteXn0IEYWmM1LrGDAUWnHDbXx0TVvhrWLYLugDcN002FrgOOcx')
+const stripe = require('stripe')('sk_test_51Mm2IEIFS37SgUhiQRWKI6TR7ktr10cbWvakDGbMkOW48cnjBFuoKv3Lav7COYsWWO90q7dW5abxVSffn156Ki1j00zmtN07W8')
 
 
 router.post("/bookhotel", async (req, res) => {

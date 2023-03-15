@@ -46,40 +46,40 @@ const Homescreen = () => {
 
 
         var temphotels = []
-        
-        for (const hotel of duplicatehotels) {
-            let availability = false; 
+        var availability = false
+        for(const hotel of duplicatehotels){
           
-            if (hotel.currentbookings.length > 0) {
-              for (const booking of hotel.currentbookings) {
-                if (
-                  !moment(moment(dates[0]).format("DD-MM-YYYY")).isBetween(
-                    booking.fromdate,
-                    booking.todate
-                  ) &&
-                  !moment(moment(dates[1]).format("DD-MM-YYYY")).isBetween(
-                    booking.fromdate,
-                    booking.todate
-                  )
-                ) {
-                  if (
-                    moment(dates[0]).format("DD-MM-YYYY") !== booking.fromdate &&
-                    moment(dates[0]).format("DD-MM-YYYY") !== booking.todate &&
-                    moment(dates[1]).format("DD-MM-YYYY") !== booking.fromdate &&
-                    moment(dates[1]).format("DD-MM-YYYY") !== booking.todate
-                  ) {
-                    availability = true;
+          if(hotel.currentbookings.length > 0){
+              
+              for(const booking of hotel.currentbookings){
+                  if(!moment(moment(dates[0]).format('DD-MM-YYYY')).isBetween(booking.fromdate , booking.todate)
+                  && !moment(moment(dates[1]).format('DD-MM-YYYY')).isBetween(booking.fromdate , booking.todate)
+                  ){
+
+                  if(
+
+                      moment(dates[0]).format('DD-MM-YYYY') !== booking.fromdate &&
+                      moment(dates[0]).format('DD-MM-YYYY') !== booking.todate &&
+                      moment(dates[1]).format('DD-MM-YYYY') !== booking.fromdate &&
+                      moment(dates[1]).format('DD-MM-YYYY') !== booking.todate
+                  ){
+                      availability = true;
                   }
-                }
+
+
+                  }
               }
-            }
-          
-            if (availability === true || hotel.currentbookings.length === 0) {
-              temphotels.push(hotel);
-            }
-          
           }
-          sethotels(temphotels);
+
+          if(availability === true || hotel.currentbookings.length === 0)
+           {
+              temphotels.push(hotel);
+           }
+
+           
+
+      }
+      sethotels(temphotels)  
     }
 
     return (

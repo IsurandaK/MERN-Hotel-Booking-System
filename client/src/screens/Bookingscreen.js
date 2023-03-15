@@ -97,7 +97,7 @@ function Bookingscreen({ match }) {
                 amount={totalamount * 100}
                 token={onToken}
                 currency='USD'
-                stripeKey="pk_test_51MlxH5SABQ8fb5lzxigEWQZQgWjMvu43gMVXaPRdTwdFB5ufjTUgaTd42kyOgBHdAG4i92p7CirL05lq677wxCUC00RPATbYbJ">
+                stripeKey="pk_test_51Mm2IEIFS37SgUhiUwYemh3IsAUNWyIiIWMVNtGWntS2hu9UT4syxM9c8VyMenu9JnLU79PueyhN2Z5VPOrlNHJA00h1MOXGbG">
               
               <button className="btn btn-primary"> Pay Now </button>
 
