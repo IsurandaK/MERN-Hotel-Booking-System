@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import hotel from "../models/hotel";
+
 
 function Bookingscreen({ match }) {
 
@@ -13,13 +15,12 @@ function Bookingscreen({ match }) {
 
   const firstdate = moment(fromdate , 'DD-MM-YYYY')
   const lastdate = moment(todate , 'DD-MM-YYYY')
-  
-  const totaldays = moment.duration(lastdate.diff(firstdate)).asDays()+1;
-  //const test = totaldays;
-  //const test1 = hotel.price;
-  //const totalamount = totaldays*hotel.price
-  
 
+  const totaldays = moment.duration(lastdate.diff(firstdate)).asDays()+1
+  
+  const totalamount = totaldays*hotel.price
+  
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -61,9 +62,9 @@ function Bookingscreen({ match }) {
             <div>
               <h1>Amount</h1>
               <hr />
-              <p>Total days : {totaldays}</p>
+              <p>Total days : {totaldays} </p>
               <p>Price per day : {hotel.price}</p>
-              <p>Total Amount : {hotel.address}</p>
+              <p>Total Amount : {}</p>
             </div>
 
             <div style={{float:'right'}}>
