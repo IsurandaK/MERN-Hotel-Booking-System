@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
+import StripeCheckout from 'react-stripe-checkout';
 
 
 function Bookingscreen({ match }) {
@@ -12,12 +13,12 @@ function Bookingscreen({ match }) {
 
   let { hotelid, fromdate, todate } = useParams();
 
-  const firstdate = moment(fromdate , 'DD-MM-YYYY')
-  const lastdate = moment(todate , 'DD-MM-YYYY')
+  const firstdate = moment(fromdate, 'DD-MM-YYYY')
+  const lastdate = moment(todate, 'DD-MM-YYYY')
 
-  const totaldays = moment.duration(lastdate.diff(firstdate)).asDays()+1
+  const totaldays = moment.duration(lastdate.diff(firstdate)).asDays() + 1
   const [totalamount, settotalamount] = useState()
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -39,24 +40,27 @@ function Bookingscreen({ match }) {
   }, []);
 
 
-  async function bookHotel(){
+ 
 
+  async function onToken(token) {
+    console.log(token)
     const bookingDetails = {
       hotel,
-      userid:JSON.parse(localStorage.getItem('currentUser'))._id,
+      userid: JSON.parse(localStorage.getItem('currentUser'))._id,
       fromdate,
       todate,
       totalamount,
-      totaldays
-    }
+      totaldays,
+      token
+    };
 
-    try{
-      const result = await axios.post('/api/bookings/bookhotel' , bookingDetails)
+    try {
+      const result = await axios.post('/api/bookings/bookhotel', bookingDetails)
     } catch (error) {
 
     }
-
   }
+
 
 
   return (
@@ -70,12 +74,12 @@ function Bookingscreen({ match }) {
           </div>
           <div className="col-md-6">
             <div>
-            <h1>Booking Details</h1>
-            <hr />
+              <h1>Booking Details</h1>
+              <hr />
 
-            <p>Name : {JSON.parse(localStorage.getItem('currentUser')).name}</p>
-            <p>From Date : {fromdate}</p>
-            <p>To Date : {todate}</p>
+              <p>Name : {JSON.parse(localStorage.getItem('currentUser')).name}</p>
+              <p>From Date : {fromdate}</p>
+              <p>To Date : {todate}</p>
             </div>
 
             <div>
@@ -86,8 +90,20 @@ function Bookingscreen({ match }) {
               <p>Total Amount : {totalamount}</p>
             </div>
 
-            <div style={{float:'right'}}>
-              <button className="btn btn-primary" onClick={bookHotel}>Pay Now</button>
+            <div style={{ float: 'right' }}>
+              
+
+              <StripeCheckout
+                amount={totalamount * 100}
+                token={onToken}
+                currency='USD'
+                stripeKey="pk_test_51MlxH5SABQ8fb5lzxigEWQZQgWjMvu43gMVXaPRdTwdFB5ufjTUgaTd42kyOgBHdAG4i92p7CirL05lq677wxCUC00RPATbYbJ">
+              
+              <button className="btn btn-primary"> Pay Now </button>
+
+
+              </StripeCheckout> 
+
             </div>
           </div>
         </div>

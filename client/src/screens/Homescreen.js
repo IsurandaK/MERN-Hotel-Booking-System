@@ -14,7 +14,7 @@ const Homescreen = () => {
 
     const[fromdate, setfromdate] = useState()
     const[todate, settodate] = useState()
-
+    const[duplicatehotels, setduplicatehotels] = useState([])
 
     useEffect(() => {
         const fetchData = async () => {
@@ -23,6 +23,7 @@ const Homescreen = () => {
                 setloading(true)
                 const { data: response } = await axios.get('/api/hotels/getallhotels');
                 sethotels(response);
+                setduplicatehotels(response);
                 setloading(false)
 
             } catch (error) {
@@ -42,6 +43,43 @@ const Homescreen = () => {
         const to = moment(dates[1].$d).format('DD.MM.YYYY');
         setfromdate(from);
         settodate(to);
+
+
+        var temphotels = []
+        
+        for (const hotel of duplicatehotels) {
+            let availability = false; 
+          
+            if (hotel.currentbookings.length > 0) {
+              for (const booking of hotel.currentbookings) {
+                if (
+                  !moment(moment(dates[0]).format("DD-MM-YYYY")).isBetween(
+                    booking.fromdate,
+                    booking.todate
+                  ) &&
+                  !moment(moment(dates[1]).format("DD-MM-YYYY")).isBetween(
+                    booking.fromdate,
+                    booking.todate
+                  )
+                ) {
+                  if (
+                    moment(dates[0]).format("DD-MM-YYYY") !== booking.fromdate &&
+                    moment(dates[0]).format("DD-MM-YYYY") !== booking.todate &&
+                    moment(dates[1]).format("DD-MM-YYYY") !== booking.fromdate &&
+                    moment(dates[1]).format("DD-MM-YYYY") !== booking.todate
+                  ) {
+                    availability = true;
+                  }
+                }
+              }
+            }
+          
+            if (availability === true || hotel.currentbookings.length === 0) {
+              temphotels.push(hotel);
+            }
+          
+          }
+          sethotels(temphotels);
     }
 
     return (
