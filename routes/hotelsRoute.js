@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const Hotel = require('../client/src/models/hotel')
+const Hotel = require('../models/hotel')
 
 router.get("/getallhotels", async(req, res) => {
     try {
