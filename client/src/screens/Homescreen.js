@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import Hotel from '../components/Hotel';
+import { DatePicker, Space } from 'antd';
+import moment from 'moment';
+
+const { RangePicker } = DatePicker;
 
 const Homescreen = () => {
 
     const [hotels, sethotels] = useState([])
     const [loading, setloading] = useState()
     const [error, seterror] = useState()
+
+    const[fromdate, setfromdate] = useState()
+    const[todate, settodate] = useState()
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -28,14 +36,32 @@ const Homescreen = () => {
         fetchData();
     }, []);
 
+
+    const filterByDate = (dates) => {
+        const from = moment(dates[0].$d).format('LL');
+        const to = moment(dates[1].$d).format('LL');
+        setfromdate(from);
+        settodate(to);
+    }
+
     return (
         <div className='container'>
+
+            <div className='row mt-5'>
+
+                <div className='col-md-3'>
+
+                <RangePicker format='DD-MM-YYYY' onChange={filterByDate}/>
+
+                </div>
+
+            </div>
 
             <div className="row justify-content-center mt-5">
                 {loading ? (<h1>Loading...</h1>) : error ? (<h1>Error</h1>) : (hotels.map(hotel => {
 
                     return <div className="col-md-9 mt-2">
-                        <Hotel hotel={hotel}/>
+                        <Hotel hotel={hotel} fromdate={fromdate} todate={todate}/>
                     </div>;
 
                 }))}

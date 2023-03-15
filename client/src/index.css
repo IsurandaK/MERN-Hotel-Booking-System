@@ -16,7 +16,7 @@ code {
 }
 
 .navbar-nav {
-  margin-left: auto !important; 
+  margin-left: auto !important;
 }
 
 .smallimg {
@@ -61,6 +61,3 @@ h2 {
   text-align: center !important;
 }
 
-.dropdown-toggle {
-  background-color: black !important;
-}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import moment from "moment";
 
 function Bookingscreen({ match }) {
 
@@ -8,7 +9,16 @@ function Bookingscreen({ match }) {
   const [error, seterror] = useState();
   const [hotel, sethotel] = useState();
 
-  let { hotelid } = useParams();
+  let { hotelid, fromdate, todate } = useParams();
+
+  const firstdate = moment(fromdate , 'DD-MM-YYYY')
+  const lastdate = moment(todate , 'DD-MM-YYYY')
+  
+  const totaldays = moment.duration(lastdate.diff(firstdate)).asDays()+1;
+  //const test = totaldays;
+  //const test1 = hotel.price;
+  //const totalamount = totaldays*hotel.price
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -29,7 +39,6 @@ function Bookingscreen({ match }) {
   }, []);
 
 
-
   return (
     <div className="m-5">
       {loading ? (<h1>Loading...</h1>) : error ? (<h1>Error...</h1>) : (<div>
@@ -45,16 +54,16 @@ function Bookingscreen({ match }) {
             <hr />
 
             <p>Name :</p>
-            <p>From Date :</p>
-            <p>To Date :</p>
+            <p>From Date : {fromdate}</p>
+            <p>To Date : {todate}</p>
             </div>
 
             <div>
               <h1>Amount</h1>
               <hr />
-              <p>Total days :</p>
+              <p>Total days : {totaldays}</p>
               <p>Price per day : {hotel.price}</p>
-              <p>Total Amount</p>
+              <p>Total Amount : {hotel.address}</p>
             </div>
 
             <div style={{float:'right'}}>
