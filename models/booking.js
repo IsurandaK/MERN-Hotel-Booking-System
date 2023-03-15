@@ -23,7 +23,7 @@ const bookingSchema = mongoose.Schema({
     transactionId : {
         type: String, required: true
     },
-    status : {
+    stat : {
         type: String, required: true, default : 'booked'
     }
 

@@ -73,7 +73,7 @@ function Bookingscreen({ match }) {
             <h1>Booking Details</h1>
             <hr />
 
-            <p>Name :</p>
+            <p>Name : {JSON.parse(localStorage.getItem('currentUser')).name}</p>
             <p>From Date : {fromdate}</p>
             <p>To Date : {todate}</p>
             </div>
