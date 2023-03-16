@@ -30,6 +30,10 @@ h1 {
   font-size: 20px !important;
 }
 
+p {
+  font-size: 15px !important;
+}
+
 .btn {
   background-color: #C1B339 !important;
   color: white !important;

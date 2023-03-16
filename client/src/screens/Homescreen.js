@@ -52,13 +52,14 @@ const Homescreen = () => {
         var temphotels = []
         var availability = false
         for (const hotel of duplicatehotels) {
-
+            
             if (hotel.currentbookings.length > 0) {
 
                 for (const booking of hotel.currentbookings) {
+                    
                     if (!moment(moment(dates[0]).format('DD-MM-YYYY')).isBetween(booking.fromdate, booking.todate)
-                        && !moment(moment(dates[1]).format('DD-MM-YYYY')).isBetween(booking.fromdate, booking.todate)
-                    ) {
+                        && !moment(moment(dates[1]).format('DD-MM-YYYY')).isBetween(booking.fromdate, booking.todate))
+                     {
 
                         if (
 
@@ -69,8 +70,6 @@ const Homescreen = () => {
                         ) {
                             availability = true;
                         }
-
-
                     }
                 }
             }
