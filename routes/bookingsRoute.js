@@ -34,7 +34,7 @@ router.post("/bookhotel", async (req, res) => {
 
         if (payment) {
 
-            try {
+            
                 const newbooking = new Booking({
                     hotel: hotel.name,
                     hotelid: hotel._id,
@@ -61,12 +61,8 @@ router.post("/bookhotel", async (req, res) => {
                 });
 
                 await hoteltemp.save()
-                res.send('Room Booked Successfully')
 
-            } catch (error) {
-                console.log(error);
-                return res.status(400).json({ error });
-            }
+            
 
         }
 

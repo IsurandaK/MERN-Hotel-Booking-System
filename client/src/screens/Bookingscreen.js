@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import moment from "moment";
 import StripeCheckout from 'react-stripe-checkout';
-
+import Swal from 'sweetalert2';
 
 function Bookingscreen({ match }) {
 
@@ -55,9 +55,16 @@ function Bookingscreen({ match }) {
     };
 
     try {
+      setloading(true);
       const result = await axios.post('/api/bookings/bookhotel', bookingDetails)
+      setloading(false);
+      Swal.fire('Congratulations' , 'Your Hotel Booked Successfully' , 'success').then(result=>
+        {
+          window.location.href='/bookings'
+        })
     } catch (error) {
-
+      setloading(false)
+      Swal.fire('Error' , 'Something went wrong' , 'error')
     }
   }
 
