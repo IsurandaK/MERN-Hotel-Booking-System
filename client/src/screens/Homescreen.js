@@ -84,7 +84,7 @@ const Homescreen = () => {
 
     function filterBySearch() {
 
-        const temphotels = duplicatehotels.filter(hotel => hotel.name.toLowerCase().includes(searchkey.toLowerCase()))
+        const temphotels = duplicatehotels.filter(hotel => hotel.name.toLowerCase().includes(searchkey.toLowerCase()) || hotel.district.toLowerCase().includes(searchkey.toLowerCase()))
 
         sethotels(temphotels)
 
@@ -124,8 +124,8 @@ const Homescreen = () => {
                 <div className='col-md-3'>
                     <select className='form-control' value={category} onChange={(e) => { filterByCategory(e.target.value) }}>
                         <option value="all">All</option>
-                        <option value="delux">Delux</option>
-                        <option value="non-delux">Non-Delux</option>
+                        <option value="hotel">Hotel</option>
+                        <option value="villa">Villa</option>
                     </select>
                 </div>
 

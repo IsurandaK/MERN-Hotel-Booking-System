@@ -24,4 +24,15 @@ router.post("/gethotelbyid", async(req, res) => {
     }
 });
 
+router.post("/addhotel", async(req, res) => {
+    try {
+        const newhotel = new Hotel(req.body)
+        await newhotel.save()
+        
+        res.send('Hotel Added Successfully')
+    } catch (error) {
+        return res.status(400).json({ error });
+    }
+});
+
 module.exports = router;
