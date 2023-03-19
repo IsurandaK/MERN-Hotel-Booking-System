@@ -2,6 +2,8 @@ import React, {useState , useEffect} from "react";
 import axios from "axios";
 import Error from "../components/Error";
 
+
+
 function Loginscreen() {
 
     const[email , setemail] = useState('')
@@ -15,7 +17,7 @@ function Loginscreen() {
             const user={
            
                 email,
-                password
+                password,
             }
             try {
 
@@ -23,17 +25,23 @@ function Loginscreen() {
                 const result = (await axios.post('/api/users/login', user)).data
                 setloading(false);
 
-                // console.log(result);
+                
 
                 localStorage.setItem('currentUser' , JSON.stringify(result));
-                window.location.href='/home'
+                if (password === 'admin') {
+                    window.location.href='/admin'
+                }
+                else {
+                    window.location.href='/home'
+                }
+                
 
             } catch (error) {
                 console.log(error)
                 setloading(false);
                 seterror(true)
             }
-            //console.log(user)
+           
     }
 
     return (

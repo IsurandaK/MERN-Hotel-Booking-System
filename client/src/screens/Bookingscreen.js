@@ -65,7 +65,7 @@ function Bookingscreen({ match }) {
       setloading(false);
       Swal.fire('Congratulations' , 'Your Hotel Booked Successfully' , 'success').then(result=>
         {
-          window.location.href='/bookings'
+          window.location.href='/home'
         })
     } catch (error) {
       setloading(false)
